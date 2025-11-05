@@ -10,7 +10,7 @@ export default function fuzzySearch(a: string, b: string[]): string {
     }
   }
 
-  let allNumMatches = []; // empty list to which we will append all rmp class vals that have the same class number
+  const allNumMatches = []; // empty list to which we will append all rmp class vals that have the same class number
 
   for (const name of b) {
     if (entered == name) { // check if perfect match
@@ -34,17 +34,17 @@ export default function fuzzySearch(a: string, b: string[]): string {
       return userLen;
     }
     // if last char of both strings are same, it will go backwards
-    if (userInput[userLen-1] === rmpVals[rmpLen-1]) {
+    if (userInput[userLen - 1] === rmpVals[rmpLen - 1]) {
       return levDist(userInput, rmpVals, userLen - 1, rmpLen - 1);
     }
     // calculate minimum of the 3 possible operations: insert, remove, or replace
     return 1 + Math.min(
       // insert
-      levDist(userInput, rmpVals, userLen, rmpLen-1),
+      levDist(userInput, rmpVals, userLen, rmpLen - 1),
       // remove
-      levDist(userInput, rmpVals, userLen-1, rmpLen),
+      levDist(userInput, rmpVals, userLen - 1, rmpLen),
       // replace
-      levDist(userInput, rmpVals, userLen-1, rmpLen-1)
+      levDist(userInput, rmpVals, userLen - 1, rmpLen - 1)
     );
   }
 
