@@ -10,6 +10,9 @@ export default function Main() {
         <AddButton />
         <CalculateButton />
       </div>
+      <div className="meter-box">
+        <img src="/Peter.svg" alt="Peter"></img>
+      </div>
     </div>
   );
 }
