@@ -4,10 +4,12 @@ import AddButton from "./AddButton"
 
 export default function Main() {
   return (
-    <div>
-      <h1 id = "title"> Peter's Cooked-O Meter </h1>
-      <AddButton />
-      <CalculateButton />
+    <div className="fullscreen-background">
+      <h1 id = "title"> Peter's Cooked-O Meter</h1>
+      <div className="button-row">
+        <AddButton />
+        <CalculateButton />
+      </div>
     </div>
   );
 }

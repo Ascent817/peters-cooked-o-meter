@@ -1,7 +1,9 @@
+import "./Main.css";
+
 export default function AddButton () {
   return (
     <div>
-      <button> Add + </button>
+      <button className="add-button"> Add + </button>
     </div>
   )
 }
