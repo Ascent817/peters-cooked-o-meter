@@ -2,7 +2,7 @@ import Main from "./components/Main";
 import fuzzySearch from "./utils/fuzzySearch";
 import { getSearchResults, getProfessorDetails, getProfessorRatings } from "./utils/rmpScraper";
 
-import { Teacher } from "./types/teacher";
+import { Rating, Teacher } from "./types/teacher";
 
 export default async function Home() {
 
@@ -20,6 +20,8 @@ export default async function Home() {
 
   const rmpCourseID = fuzzySearch(courseID, professorDetails.courseCodes.map((course) => course.courseName));
   console.log('rmpCourseID', rmpCourseID);
+  const professorRatings: Rating[] = await getProfessorRatings(professorID, rmpCourseID);
+  console.log('ratings', professorRatings);
 
   return (
     <div>

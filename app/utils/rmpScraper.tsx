@@ -1,4 +1,4 @@
-import { Teacher } from "../types/teacher";
+import { Rating, Teacher } from "../types/teacher";
 
 export async function getSearchResults(profName: string) {
   const raw = JSON.stringify({
@@ -52,7 +52,7 @@ export async function getProfessorDetails(professorID: string) {
     console.error('error', error);
   }
 
-  console.log('professorDetails', professorDetails);
+  //console.log('professorDetails', professorDetails);
   return professorDetails.data?.node as Teacher;
 }
 
@@ -71,10 +71,10 @@ export async function getProfessorRatings(professorID: string, courseID: string)
   }
 });
 
-let getProfessorRatings
+let professorRatings
 
 try {
-    getProfessorRatings = await fetch("https://www.ratemyprofessors.com/graphql", {
+    professorRatings = await fetch("https://www.ratemyprofessors.com/graphql", {
       method: 'POST',
       body: raw,
       redirect: 'follow'
@@ -83,6 +83,13 @@ try {
     console.error('error', error);
   }
 
-  return getProfessorRatings?.data?.search?.teachers?.edges.length > 0 ? getProfessorRatings?.data?.search?.teachers?.edges : null;
+  let allRatings: Rating[] = [];
+  //console.log('professorRatings', professorRatings);
+  for (let i = 0; i <= 9; i++) {
+    allRatings.push(professorRatings.data?.node?.ratings?.edges[i]?.node?.difficultyRating as Rating);
+  }
+  //console.log(allRatings);
+  return allRatings;
+  // return getProfessorRatings?.data?.search?.teachers?.edges.length > 0 ? getProfessorRatings?.data?.search?.teachers?.edges : null;
 }
   
