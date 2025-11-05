@@ -3,6 +3,10 @@ import fuzzySearch from "./utils/FuzzySearch";
 
 export default async function Home() {
 
+  // fuzzy search testing
+  // const test = fuzzySearch('I&C SCI 6B', ['ART9A', 'ART9B', 'WRITING60', 'ICSH32', '6B']);
+  // console.log(test);
+
   const courseID: string = 'ICS 6B';
   const profName: string = 'Irene Gassko';
 
