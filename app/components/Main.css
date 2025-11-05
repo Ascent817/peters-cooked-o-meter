@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Baloo Bhai";
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("/BalooBhai/BalooBhai2-Regular.woff2") format("woff2");
+}
+
+#title {
+  color: #FFF;
+  -webkit-text-stroke-width: 5px;
+  -webkit-text-stroke-color: #2783E6;
+  font-family: "Baloo Bhai";
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
