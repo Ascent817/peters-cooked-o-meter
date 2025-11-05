@@ -96,3 +96,10 @@
     0 4px 0 0 #1540b5,
     0 7px 8px 0 #0d2e86;
 }
+
+.class-box {
+  width: 400px;
+  height: 70px;
+  background: white;
+  margin: 20px;
+}

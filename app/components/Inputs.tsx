@@ -5,7 +5,7 @@ export default function Inputs () {
   const [numClasses, setNumClasses] = useState(0);
 
   return (
-    <div>
+    <div className="class-box">
       <input
         placeholder = "Class"
         type = "number"
