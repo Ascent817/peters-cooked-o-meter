@@ -12,7 +12,7 @@ export default function Inputs ({id, setClassList, setTotalScore, setShowTotalSc
   }
 
   return (
-    <div>
+    <div className="class-box">
       <input
         placeholder = "Class"
         type = "number"
