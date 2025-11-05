@@ -13,7 +13,7 @@ export default function AddButton () {
 
   return (
     <div>
-      <button className="add-button" onClick = {() => addInput(count)} > Add + </button>
+      <button className="add-button" onClick = {() => addInput(count)} > Add Class </button>
 
       {classList.map((id) => {
         return <Inputs key={id} />;

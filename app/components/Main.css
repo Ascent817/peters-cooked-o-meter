@@ -38,10 +38,12 @@
 .add-button {
   top: 500px;
   left: 150px;
-  width: 150px;
+  width: 200px;
   height: 70px;
   flex-shrink: 0;
   border-radius: 20px;
+  background-image: url('/AddButton.png');
+  background-size: cover;
   background: #FFF;
   color: #2783E6;
   font-family: "Baloo Bhai";
@@ -92,6 +94,7 @@
 }
 
 .class-box {
+  padding: 10px;
   font-size: 20px;
   width: 500px;
   height: 70px;
@@ -101,6 +104,8 @@
 
 .meter-box {
   position: absolute;
+  width: 350px;
+  height: 600px;
   bottom: 0;
-  right: 0;
+  right: 50px;
 }
