@@ -1,5 +1,5 @@
 import Main from "./components/Main";
-import fuzzySearch from "./utils/FuzzySearch";
+import fuzzySearch from "./utils/fuzzySearch";
 import { getSearchResults } from "./utils/rmpScraper";
 
 export default async function Home() {

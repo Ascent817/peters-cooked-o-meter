@@ -27,3 +27,11 @@ export async function getSearchResults(profName: string) {
 
   return professorSearchResults?.data?.search?.teachers?.edges.length > 0 ? professorSearchResults?.data?.search?.teachers?.edges : null;
 }
+
+export async function getProfessorDetails(professorID: string) {
+
+}
+
+export async function getProfessorRatings(professorID: string, courseID: string) {
+
+}
