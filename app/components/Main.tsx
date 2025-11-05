@@ -8,7 +8,6 @@ export default function Main() {
       <h1 id = "title"> Peter's Cooked-O Meter</h1>
       <div className="button-row">
         <AddButton />
-        <CalculateButton />
       </div>
     </div>
   );

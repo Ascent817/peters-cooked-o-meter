@@ -1,10 +1,13 @@
 "use client";
-import Inputs from "./Inputs"
+import CalculateButton from "./CalculateButton";
+import Inputs from "./Inputs";
 import { useState } from 'react';
 
 export default function AddButton () {
   const [classList, setClassList] = useState<number[]>([]);
   const [count, setCount] = useState(1);
+  const [totalScore, setTotalScore] = useState(0);
+  const [showTotalScore, setShowTotalScore] = useState(false);
 
   function addInput (count: number) {
     setClassList((prev) => [...prev, count]);
@@ -16,8 +19,10 @@ export default function AddButton () {
       <button onClick = {() => addInput(count)} > Add + </button>
 
       {classList.map((id) => {
-        return <Inputs key={id} />;
+        return <Inputs key={id} id = {id} setClassList = {setClassList} setTotalScore = {setTotalScore} setShowTotalScore = {setShowTotalScore}/>;
       })}
+
+      <CalculateButton totalScore = {totalScore} showTotalScore = {showTotalScore} setShowTotalScore = {setShowTotalScore}/>
     </div>
   )
 }
