@@ -116,15 +116,18 @@ export default function Inputs ({id, setClassList, showScore}: InputsProps) {
           setShowCourseList(e.target.value.length > 0);
         }}/>
 
-      {showCourseList && courseList != null && courseList.map((course, index) => (
-        <button
-          key={index} 
-          onClick = {() => selectCourse(course)}
-        > 
-          {course.courseName}
-        </button>
-      ))}
-
+      {showCourseList && courseList != null &&(
+          <div className="course-list">
+            {courseList.map((course, index) => (
+              <button
+                key={index} 
+                onClick = {() => selectCourse(course)}
+              > 
+                {course.courseName}
+              </button>
+           ))}
+          </div>
+          )}
       <TrashButton id = {id} setClassList = {setClassList}/>
     </div>
   )
