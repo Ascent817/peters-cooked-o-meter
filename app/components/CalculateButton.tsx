@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import "./Main.css"
 
 export default function CalculateButton ({totalScore, showTotalScore, setShowTotalScore}: any) {
 
@@ -12,7 +13,7 @@ export default function CalculateButton ({totalScore, showTotalScore, setShowTot
         Calculate
       </button>
 
-      {showTotalScore && <p> {totalScore} </p>}
+      {showTotalScore && <div className='rating-box'> {totalScore} </div>}
     </div>
   )
 }

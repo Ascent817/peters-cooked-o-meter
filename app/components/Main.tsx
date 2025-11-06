@@ -5,7 +5,9 @@ import AddButton from "./AddButton"
 export default function Main() {
   return (
     <div className="fullscreen-background">
-      <h1 id = "title"> Peter's Cooked-O Meter</h1>
+      <div className="title-box">
+        <img src="/Title.svg" alt="Peter's Cooked-O Meter" className="title-svg" />
+      </div>
       <div className="button-row">
         <AddButton />
       </div>
