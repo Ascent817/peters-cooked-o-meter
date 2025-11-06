@@ -18,9 +18,11 @@ export default function AddButton () {
     <div>
       <button className="add-button" onClick = {() => addInput(count)} > Add Class </button>
 
-      {classList.map((id) => {
-        return <Inputs key={id} id = {id} setClassList = {setClassList} setTotalScore = {setTotalScore} setShowTotalScore = {setShowTotalScore}/>;
-      })}
+      {classList.map((id) => (
+        <div key = {id}>
+          <Inputs id = {id} setClassList = {setClassList} setTotalScore = {setTotalScore} setShowTotalScore = {setShowTotalScore}/>
+        </div>
+      ))}
 
       <CalculateButton totalScore = {totalScore} showTotalScore = {showTotalScore} setShowTotalScore = {setShowTotalScore}/>
     </div>
