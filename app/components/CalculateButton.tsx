@@ -8,6 +8,7 @@ interface CalculateButtonProps {
 }
 import { useState } from "react";
 import "./Main.css"
+import Score from "./Score";
 
 export default function CalculateButton ({showScore, ratingList, setShowScore, canCalculate}: CalculateButtonProps) {
   const [average, setAverage] = useState(0);
@@ -32,6 +33,7 @@ export default function CalculateButton ({showScore, ratingList, setShowScore, c
         Calculate
       </button>
 
+      <Score showScore = {showScore} average = {average} />
     </div>
   )
 }
