@@ -1,18 +1,33 @@
+type RatingItem = { inputId: number, rating: number };
 interface CalculateButtonProps {
+  showScore: boolean;
+  ratingList: RatingItem[];
   setShowScore: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
-import { useState } from 'react';
+  canCalculate: boolean;
+}
+import { useState } from "react";
 import "./Main.css"
 
-export default function CalculateButton ({setShowScore}: CalculateButtonProps) {
+export default function CalculateButton ({showScore, ratingList, setShowScore, canCalculate}: CalculateButtonProps) {
+  const [average, setAverage] = useState(0);
+
+  function calculateRatings() {
+    setShowScore(true);
+    if (!canCalculate) return;
+
+    const sum = ratingList.reduce((acc, item) => acc + item.rating, 0);
+    console.log(ratingList)
+    setAverage(Math.round(sum / ratingList.length));
+  }
 
   return (
     <div>
+      {showScore && <h1> {average} </h1>}
       <button 
         type="button" 
         className="calc-button"
-        onClick = {() => setShowScore(true)}
+        onClick = {() => calculateRatings()}
       >
         Calculate
       </button>

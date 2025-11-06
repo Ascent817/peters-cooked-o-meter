@@ -83,6 +83,13 @@ export async function getProfessorRatings(professorID: string, courseID: string)
     console.error('error', error);
   }
 
-  const allRatings: Rating[] = professorRatings.data?.node?.ratings?.edges?.map((node: Rating) => node as Rating);
+  //const allRatings: Rating[] = professorRatings.data?.node?.ratings?.edges?.map((node: Rating) => node as Rating);
+  //return allRatings;
+
+  const allRatings: number[]  = [];
+  for (let i = 0; i <= 9; i++) {
+    allRatings.push(professorRatings.data?.node?.ratings?.edges[i]?.node?.difficultyRating);
+  }
+  console.log(allRatings)
   return allRatings;
 }

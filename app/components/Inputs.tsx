@@ -1,17 +1,20 @@
 import "./Main.css"
+type RatingItem = { inputId: number, rating: number };
 
 interface InputsProps {
   id: number;
   setClassList: React.Dispatch<React.SetStateAction<number[]>>;
-  showScore: boolean;
+  setShowScore: React.Dispatch<React.SetStateAction<boolean>>;
+  setRatingList: React.Dispatch<React.SetStateAction<RatingItem[]>>;
+  setCanCalculate: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 import { useState, useEffect } from 'react';
 import TrashButton from './TrashButton';
 import { getSearchResults, getProfessorDetails, getProfessorRatings } from "../utils/rmpScraper";
-import { CourseCode, Teacher } from '../types/teacher';
+import { CourseCode, Rating, Teacher } from '../types/teacher';
 
-export default function Inputs ({id, setClassList, showScore}: InputsProps) {
+export default function Inputs ({id, setClassList, setShowScore, setRatingList, setCanCalculate}: InputsProps) {
   const [professorQuery, setProfessorQuery] = useState('');
   const [professorInput, setProfessorInput] = useState<Teacher | null>(null);
   const [professorList, setProfessorList] = useState<{ node: Teacher }[]>([]);
@@ -62,14 +65,23 @@ export default function Inputs ({id, setClassList, showScore}: InputsProps) {
     return () => clearTimeout(delay);
   }, [courseQuery, professorInput])
 
-  /*
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const newValue = e.target.value;
-    setTotalScore((prev: number) => prev - localValue + newValue);
-    //setLocalValue(newValue);
-    setShowTotalScore(false)
-  }
-  */
+  useEffect(() => {
+    const fetchRating = setTimeout(async () => {
+      try {
+        if (professorInput && courseInput) {
+          setCanCalculate(true);
+          const difficultyRatings = await getProfessorRatings(professorInput?.id, courseInput?.courseName);
+          const filteredRatings = difficultyRatings.filter(r => r != undefined)
+            .map(rating => ({ inputId: id, rating }));
+          setRatingList(prev => [...prev, ...filteredRatings]);
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }, 300)
+
+    return () => clearTimeout(fetchRating);
+  }, [professorInput, courseInput, setCanCalculate, setRatingList, id])
 
   function selectProfessor (professor: Teacher) {
     setProfessorInput(professor)
@@ -89,31 +101,36 @@ export default function Inputs ({id, setClassList, showScore}: InputsProps) {
       <input
         placeholder = "Professor"
         value={professorQuery}
+        required
         onChange = {(e) => {
           setProfessorQuery(e.target.value);
           setShowProfessorList(e.target.value.length > 0);
+          setShowScore(false);
         }}
       />
-          {showProfessorList && professorList != null &&(
-            <div className="professor-list">
-              {professorList.map((professor, index) => (
-                <button
-                  key={index}
-                  onClick={() => selectProfessor(professor.node)}
-                >
-                  {professor.node.firstName} {professor.node.lastName}
-                </button>
-              ))}
-            </div>
-          )}
+       
+      {showProfessorList && professorList != null &&(
+        <div className="professor-list">
+          {professorList.map((professor, index) => (
+            <button
+              key={index}
+              onClick={() => selectProfessor(professor.node)}
+            >
+              {professor.node.firstName} {professor.node.lastName}
+            </button>
+          ))}
+        </div>
+      )}
 
 
       <input
         placeholder = "Class"
         value={courseQuery}
+        required
         onChange = {(e) => {
           setCourseQuery(e.target.value);
           setShowCourseList(e.target.value.length > 0);
+          setShowScore(false);
         }}/>
 
       {showCourseList && courseList != null &&(
@@ -128,7 +145,7 @@ export default function Inputs ({id, setClassList, showScore}: InputsProps) {
            ))}
           </div>
           )}
-      <TrashButton id = {id} setClassList = {setClassList}/>
+      <TrashButton id = {id} setClassList = {setClassList} setRatingList = {setRatingList}/>
     </div>
   )
 }
