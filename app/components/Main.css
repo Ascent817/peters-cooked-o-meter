@@ -20,6 +20,21 @@
   }
 }
 
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50px);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: translateY(0);
+    animation-timing-function: ease-in;
+  }
+}
+
+
 #title {
   color: black;
   font-weight: 400;
@@ -113,7 +128,7 @@
 }
 
 .class-container {
-  margin: 20px;
+  margin: 15px;
   max-height: 500px;
   overflow-y: scroll;
   display: flex;
@@ -127,6 +142,10 @@
   height: auto;
   bottom: 30px;
   right: 5%;
+}
+
+.meter-box:hover {
+  animation: jump 0.3s;
 }
 
 .title-box {
@@ -170,8 +189,7 @@
   cursor: pointer;
 }
 
-.professor-list,
-.course-list {
+.professor-list{
   background-color: #ccc;
   position: fixed;
   display: flex;
@@ -179,8 +197,31 @@
   background: white;
   border: 1px solid #ccc;
   border-radius: 6px;
-  width: 100%;
+  width: 200px;
   max-height: 200px;
   overflow-y: auto;
   z-index: 100;
+}
+
+.course-list {
+  background-color: #ccc;
+  position: fixed;
+  display: flex;
+  margin-left: 240px;
+  flex-direction: column;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 200px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.info-text {
+  display: flex;
+  margin-top: -50px;
+  margin-bottom: 60px;
+  font-family: "Baloo Bhai";
+  font-size: 18px;
 }
