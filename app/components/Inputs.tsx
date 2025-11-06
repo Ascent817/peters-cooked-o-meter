@@ -1,3 +1,5 @@
+import "./Main.css"
+
 interface InputsProps {
   id: number;
   setClassList: React.Dispatch<React.SetStateAction<number[]>>;
@@ -90,15 +92,19 @@ export default function Inputs ({id, setClassList, setTotalScore, setShowTotalSc
           setShowProfessorList(e.target.value.length > 0);
         }}
       />
+          {showProfessorList && (
+            <div className="professor-list">
+              {professorList.map((professor, index) => (
+                <button
+                  key={index}
+                  onClick={() => selectProfessor(professor.node)}
+                >
+                  {professor.node.firstName} {professor.node.lastName}
+                </button>
+              ))}
+            </div>
+          )}
 
-      {showProfessorList && professorList.map((professor, index) => (
-        <button
-          key={index} 
-          onClick = {() => selectProfessor(professor.node)}
-        > 
-          {professor.node.firstName} {professor.node.lastName}
-        </button>
-      ))}
 
       <input
         placeholder = "Class"
