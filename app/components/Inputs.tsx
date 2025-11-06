@@ -94,7 +94,7 @@ export default function Inputs ({id, setClassList, showScore}: InputsProps) {
           setShowProfessorList(e.target.value.length > 0);
         }}
       />
-          {showProfessorList && (
+          {showProfessorList && professorList != null &&(
             <div className="professor-list">
               {professorList.map((professor, index) => (
                 <button
