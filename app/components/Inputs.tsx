@@ -34,6 +34,7 @@ export default function Inputs ({id, setClassList, setTotalScore, setShowTotalSc
         setProfessorList(professorSearchResults);
       } catch (err) {
         console.log(err)
+        setProfessorList([])
       }
     }, 300)
 
@@ -49,9 +50,13 @@ export default function Inputs ({id, setClassList, setTotalScore, setShowTotalSc
 
       try {
         const courseSearchResults = await getProfessorDetails(professorInput.id);
-        setCourseList(courseSearchResults.courseCodes);
+        const filteredCourseSearchResults = courseSearchResults.courseCodes.filter(course => 
+          course.courseName.toLowerCase().includes(courseQuery.toLowerCase())
+        );
+        setCourseList(filteredCourseSearchResults);
       } catch (err) {
         console.log(err)
+        setCourseList([])
       }
     }, 300)
 
@@ -91,7 +96,7 @@ export default function Inputs ({id, setClassList, setTotalScore, setShowTotalSc
         }}
       />
 
-      {showProfessorList && professorList.map((professor, index) => (
+      {showProfessorList && professorList != null && professorList.map((professor, index) => (
         <button
           key={index} 
           onClick = {() => selectProfessor(professor.node)}
@@ -108,7 +113,7 @@ export default function Inputs ({id, setClassList, setTotalScore, setShowTotalSc
           setShowCourseList(e.target.value.length > 0);
         }}/>
 
-      {showCourseList && courseList.map((course, index) => (
+      {showCourseList && courseList != null && courseList.map((course, index) => (
         <button
           key={index} 
           onClick = {() => selectCourse(course)}
