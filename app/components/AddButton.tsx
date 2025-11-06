@@ -1,4 +1,5 @@
 "use client";
+import "./Main.css"
 import CalculateButton from "./CalculateButton";
 import Inputs from "./Inputs";
 import { useState } from 'react';
@@ -16,15 +17,15 @@ export default function AddButton () {
 
   return (
     <div>
-      <button className="add-button" onClick = {() => addInput(count)} > Add Class </button>
-
-      {classList.map((id) => (
-        <div key = {id}>
-          <Inputs id = {id} setClassList = {setClassList} setTotalScore = {setTotalScore} setShowTotalScore = {setShowTotalScore}/>
-        </div>
-      ))}
-
-      <CalculateButton totalScore = {totalScore} showTotalScore = {showTotalScore} setShowTotalScore = {setShowTotalScore}/>
+      <div className="button-row">
+        <button className="add-button" onClick = {() => addInput(count)} > Add Class </button>
+        <CalculateButton totalScore = {totalScore} showTotalScore = {showTotalScore} setShowTotalScore = {setShowTotalScore}/>
+      </div>
+      <div className="class-container">
+        {classList.map((id) => {
+          return <Inputs key={id} id = {id} setClassList = {setClassList} setTotalScore = {setTotalScore} setShowTotalScore = {setShowTotalScore}/>;
+        })}
+      </div>
     </div>
   )
 }

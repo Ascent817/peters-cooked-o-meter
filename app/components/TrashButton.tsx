@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import "./Main.css"
 
 export default function TrashButton ({id, setClassList}: any) {
   function deleteInput () {
@@ -7,7 +8,7 @@ export default function TrashButton ({id, setClassList}: any) {
 
   return (
     <div>
-      <button onClick = {deleteInput}> Trash Button </button>
+      <button className="delete-button" onClick = {deleteInput}> Delete 🗑️</button>
     </div>
   )
 }
