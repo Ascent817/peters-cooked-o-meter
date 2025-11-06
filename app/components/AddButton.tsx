@@ -7,8 +7,7 @@ import { useState } from 'react';
 export default function AddButton () {
   const [classList, setClassList] = useState<number[]>([]);
   const [count, setCount] = useState(1);
-  const [totalScore, setTotalScore] = useState(0);
-  const [showTotalScore, setShowTotalScore] = useState(false);
+  const [showScore, setShowScore] = useState(false);
 
   function addInput (count: number) {
     setClassList((prev) => [...prev, count]);
@@ -19,11 +18,11 @@ export default function AddButton () {
     <div>
       <div className="button-row">
         <button className="add-button" onClick = {() => addInput(count)} > Add Class </button>
-        <CalculateButton totalScore = {totalScore} showTotalScore = {showTotalScore} setShowTotalScore = {setShowTotalScore}/>
+        <CalculateButton setShowScore = {setShowScore}/>
       </div>
       <div className="class-container">
         {classList.map((id) => {
-          return <Inputs key={id} id = {id} setClassList = {setClassList} setTotalScore = {setTotalScore} setShowTotalScore = {setShowTotalScore}/>;
+          return <Inputs key={id} id = {id} setClassList = {setClassList} showScore = {showScore}/>;
         })}
       </div>
     </div>

@@ -1,8 +1,7 @@
 interface InputsProps {
   id: number;
   setClassList: React.Dispatch<React.SetStateAction<number[]>>;
-  setTotalScore: React.Dispatch<React.SetStateAction<number>>;
-  setShowTotalScore: React.Dispatch<React.SetStateAction<boolean>>;
+  showScore: boolean;
 }
 
 import { useState, useEffect } from 'react';
@@ -10,9 +9,7 @@ import TrashButton from './TrashButton';
 import { getSearchResults, getProfessorDetails, getProfessorRatings } from "../utils/rmpScraper";
 import { CourseCode, Teacher } from '../types/teacher';
 
-export default function Inputs ({id, setClassList, setTotalScore, setShowTotalScore}: InputsProps) {
-  const [localValue, setLocalValue] = useState(0);
-
+export default function Inputs ({id, setClassList, showScore}: InputsProps) {
   const [professorQuery, setProfessorQuery] = useState('');
   const [professorInput, setProfessorInput] = useState<Teacher | null>(null);
   const [professorList, setProfessorList] = useState<{ node: Teacher }[]>([]);
