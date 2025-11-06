@@ -160,8 +160,8 @@
 }
 
 .delete-button {
-  position: fixed;
-  float: right;
+  position: relative;
+  float: right; 
   color: red;
   border: none;
   padding: 10px;
