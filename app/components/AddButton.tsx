@@ -6,12 +6,13 @@ import { useState, useEffect, use } from 'react';
 import { Rating } from "../types/teacher";
 
 export default function AddButton () {
+  type RatingItem = { inputId: number, rating: number };
   const [classList, setClassList] = useState<number[]>([]);
   const [count, setCount] = useState(1);
 
   const [canCalculate, setCanCalculate] = useState(false);
   const [showScore, setShowScore] = useState(false);
-  const [ratingList, setRatingList] = useState<number[]>([0]);
+  const [ratingList, setRatingList] = useState<RatingItem[]>([]);
 
   function addInput (count: number) {
     setClassList((prev) => [...prev, count]);

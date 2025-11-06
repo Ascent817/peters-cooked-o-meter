@@ -1,10 +1,11 @@
 import "./Main.css"
+type RatingItem = { inputId: number, rating: number };
 
 interface InputsProps {
   id: number;
   setClassList: React.Dispatch<React.SetStateAction<number[]>>;
   setShowScore: React.Dispatch<React.SetStateAction<boolean>>;
-  setRatingList: React.Dispatch<React.SetStateAction<number[]>>;
+  setRatingList: React.Dispatch<React.SetStateAction<RatingItem[]>>;
   setCanCalculate: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -70,7 +71,8 @@ export default function Inputs ({id, setClassList, setShowScore, setRatingList, 
         if (professorInput && courseInput) {
           setCanCalculate(true);
           const difficultyRatings = await getProfessorRatings(professorInput?.id, courseInput?.courseName);
-          const filteredRatings = difficultyRatings.filter(rating => rating != undefined);
+          const filteredRatings = difficultyRatings.filter(r => r != undefined)
+            .map(rating => ({ inputId: id, rating }));
           setRatingList(prev => [...prev, ...filteredRatings]);
         }
       } catch (err) {
