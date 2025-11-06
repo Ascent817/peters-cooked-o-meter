@@ -11,8 +11,7 @@ export default function AddButton () {
 
   const [canCalculate, setCanCalculate] = useState(false);
   const [showScore, setShowScore] = useState(false);
-  const [ratingList, setRatingList] = useState<Rating[]>([]);
-  const [totalRatings, setTotalRatings] = useState<number>(0);
+  const [ratingList, setRatingList] = useState<number[]>([0]);
 
   function addInput (count: number) {
     setClassList((prev) => [...prev, count]);
@@ -23,7 +22,7 @@ export default function AddButton () {
     <div>
       <div className="button-row">
         <button className="add-button" onClick = {() => addInput(count)} > Add Class </button>
-        <CalculateButton showScore = {showScore} ratingList = {ratingList} totalRatings = {totalRatings} setTotalRatings = {setTotalRatings} setShowScore = {setShowScore} canCalculate = {canCalculate}/>
+        <CalculateButton showScore = {showScore} ratingList = {ratingList} setShowScore = {setShowScore} canCalculate = {canCalculate}/>
       </div>
 
       <div className="class-container">

@@ -4,7 +4,7 @@ interface InputsProps {
   id: number;
   setClassList: React.Dispatch<React.SetStateAction<number[]>>;
   setShowScore: React.Dispatch<React.SetStateAction<boolean>>;
-  setRatingList: React.Dispatch<React.SetStateAction<Rating[]>>;
+  setRatingList: React.Dispatch<React.SetStateAction<number[]>>;
   setCanCalculate: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -70,8 +70,8 @@ export default function Inputs ({id, setClassList, setShowScore, setRatingList, 
         if (professorInput && courseInput) {
           setCanCalculate(true);
           const difficultyRatings = await getProfessorRatings(professorInput?.id, courseInput?.courseName);
-          const filteredRatings = difficultyRatings.filter(rating => rating.difficultyRating !== null);
-          setRatingList(filteredRatings);
+          const filteredRatings = difficultyRatings.filter(rating => rating != undefined);
+          setRatingList(prev => [...prev, ...filteredRatings]);
         }
       } catch (err) {
         console.log(err)
@@ -140,7 +140,7 @@ export default function Inputs ({id, setClassList, setShowScore, setRatingList, 
         </button>
       ))}
 
-      <TrashButton id = {id} setClassList = {setClassList}/>
+      <TrashButton id = {id} setClassList = {setClassList} setRatingList = {setRatingList}/>
     </div>
   )
 }
