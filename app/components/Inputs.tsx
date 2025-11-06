@@ -3,8 +3,7 @@ import "./Main.css"
 interface InputsProps {
   id: number;
   setClassList: React.Dispatch<React.SetStateAction<number[]>>;
-  setTotalScore: React.Dispatch<React.SetStateAction<number>>;
-  setShowTotalScore: React.Dispatch<React.SetStateAction<boolean>>;
+  showScore: boolean;
 }
 
 import { useState, useEffect } from 'react';
@@ -12,9 +11,7 @@ import TrashButton from './TrashButton';
 import { getSearchResults, getProfessorDetails, getProfessorRatings } from "../utils/rmpScraper";
 import { CourseCode, Teacher } from '../types/teacher';
 
-export default function Inputs ({id, setClassList, setTotalScore, setShowTotalScore}: InputsProps) {
-  const [localValue, setLocalValue] = useState(0);
-
+export default function Inputs ({id, setClassList, showScore}: InputsProps) {
   const [professorQuery, setProfessorQuery] = useState('');
   const [professorInput, setProfessorInput] = useState<Teacher | null>(null);
   const [professorList, setProfessorList] = useState<{ node: Teacher }[]>([]);
@@ -36,6 +33,7 @@ export default function Inputs ({id, setClassList, setTotalScore, setShowTotalSc
         setProfessorList(professorSearchResults);
       } catch (err) {
         console.log(err)
+        setProfessorList([])
       }
     }, 300)
 
@@ -51,9 +49,13 @@ export default function Inputs ({id, setClassList, setTotalScore, setShowTotalSc
 
       try {
         const courseSearchResults = await getProfessorDetails(professorInput.id);
-        setCourseList(courseSearchResults.courseCodes);
+        const filteredCourseSearchResults = courseSearchResults.courseCodes.filter(course => 
+          course.courseName.toLowerCase().includes(courseQuery.toLowerCase())
+        );
+        setCourseList(filteredCourseSearchResults);
       } catch (err) {
         console.log(err)
+        setCourseList([])
       }
     }, 300)
 
@@ -114,7 +116,7 @@ export default function Inputs ({id, setClassList, setTotalScore, setShowTotalSc
           setShowCourseList(e.target.value.length > 0);
         }}/>
 
-      {showCourseList && courseList.map((course, index) => (
+      {showCourseList && courseList != null && courseList.map((course, index) => (
         <button
           key={index} 
           onClick = {() => selectCourse(course)}

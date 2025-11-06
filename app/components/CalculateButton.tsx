@@ -1,19 +1,22 @@
+interface CalculateButtonProps {
+  setShowScore: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 import { useState } from 'react';
 import "./Main.css"
 
-export default function CalculateButton ({totalScore, showTotalScore, setShowTotalScore}: any) {
+export default function CalculateButton ({setShowScore}: CalculateButtonProps) {
 
   return (
     <div>
       <button 
         type="button" 
         className="calc-button"
-        onClick = {() => setShowTotalScore(true)}
+        onClick = {() => setShowScore(true)}
       >
         Calculate
       </button>
 
-      {showTotalScore && <div className='rating-box'> {totalScore} </div>}
     </div>
   )
 }
