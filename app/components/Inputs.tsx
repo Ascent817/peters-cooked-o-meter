@@ -145,7 +145,7 @@ export default function Inputs ({id, setClassList, setShowScore, setRatingList, 
            ))}
           </div>
           )}
-      <TrashButton id = {id} setClassList = {setClassList}/>
+      <TrashButton id = {id} setClassList = {setClassList} setRatingList = {setRatingList}/>
     </div>
   )
 }
