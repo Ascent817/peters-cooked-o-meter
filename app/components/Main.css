@@ -12,9 +12,11 @@
   0% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-15px);
   }
+
   100% {
     transform: translateY(0px);
   }
@@ -24,10 +26,12 @@
   0% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-50px);
     animation-timing-function: ease-out;
   }
+
   100% {
     transform: translateY(0);
     animation-timing-function: ease-in;
@@ -120,7 +124,7 @@
   padding: 10px;
   font-size: 20px;
   width: 550px;
-  height: 80px;
+  height: 90px;
   background: #ffffff;
   margin: 18px;
   border-radius: 10px;
@@ -166,7 +170,7 @@
 
 .delete-button {
   position: relative;
-  float: right; 
+  float: right;
   color: red;
   border: none;
   padding: 10px;
@@ -175,7 +179,7 @@
   cursor: pointer;
 }
 
-.professor-list{
+.professor-list {
   background-color: #ccc;
   position: relative;
   display: flex;
@@ -235,4 +239,17 @@
   right: 30%;
   width: 300px;
   height: auto;
+}
+
+input {
+  border-radius: 5px;
+  padding: 0px 5px 0px 5px;
+}
+
+/* Style focused input fields */
+input:focus {
+  outline: 2px solid #7b7b7b;
+  /* Blue outline */
+  box-shadow: 0 0 5px rgba(206, 206, 206, 0.5);
+  /* Subtle shadow */
 }
