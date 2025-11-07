@@ -129,7 +129,7 @@
 
 .class-container {
   margin: 15px;
-  max-height: 500px;
+  height: 500px;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
@@ -176,7 +176,7 @@
 
 .professor-list{
   background-color: #ccc;
-  position: fixed;
+  position: relative;
   display: flex;
   flex-direction: column;
   background: white;
@@ -190,7 +190,7 @@
 
 .course-list {
   background-color: #ccc;
-  position: fixed;
+  position: relative;
   display: flex;
   margin-left: 240px;
   flex-direction: column;
@@ -208,7 +208,7 @@
   margin-top: -50px;
   margin-bottom: 60px;
   font-family: "Baloo Bhai";
-  font-size: 18px;
+  font-size: 25px;
 }
 
 .rating-box {
