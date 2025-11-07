@@ -98,7 +98,7 @@ export default function Inputs({ id, setClassList, setShowScore, setRatingList, 
   return (
     <div className="class-box">
 
-      <input
+      <input 
         placeholder="Professor"
         value={professorQuery}
         required
@@ -108,6 +108,19 @@ export default function Inputs({ id, setClassList, setShowScore, setRatingList, 
           setShowScore(false);
         }}
       />
+
+
+      <input
+        placeholder="Class"
+        value={courseQuery}
+        required
+        onChange={(e) => {
+          setCourseQuery(e.target.value);
+          setShowCourseList(e.target.value.length > 0);
+          setShowScore(false);
+        }} />
+
+        <TrashButton id={id} setClassList={setClassList} setRatingList={setRatingList} />
 
       {showProfessorList && professorList != null && (
         <div className="professor-list">
@@ -122,17 +135,6 @@ export default function Inputs({ id, setClassList, setShowScore, setRatingList, 
         </div>
       )}
 
-
-      <input
-        placeholder="Class"
-        value={courseQuery}
-        required
-        onChange={(e) => {
-          setCourseQuery(e.target.value);
-          setShowCourseList(e.target.value.length > 0);
-          setShowScore(false);
-        }} />
-
       {showCourseList && courseList != null && (
         <div className="course-list">
           {courseList.map((course, index) => (
@@ -145,7 +147,6 @@ export default function Inputs({ id, setClassList, setShowScore, setRatingList, 
           ))}
         </div>
       )}
-      <TrashButton id={id} setClassList={setClassList} setRatingList={setRatingList} />
     </div>
   )
 }

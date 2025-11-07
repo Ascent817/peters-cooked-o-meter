@@ -24,7 +24,6 @@ export default function CalculateButton ({showScore, ratingList, setShowScore, c
 
   return (
     <div>
-      {showScore && <h1> {average} </h1>}
       <button 
         type="button" 
         className="calc-button"

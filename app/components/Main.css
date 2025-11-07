@@ -129,7 +129,7 @@
 
 .class-container {
   margin: 15px;
-  max-height: 500px;
+  height: 500px;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
@@ -140,7 +140,7 @@
   position: absolute;
   width: 300px;
   height: auto;
-  bottom: 30px;
+  bottom: 25%;
   right: 5%;
 }
 
@@ -163,21 +163,6 @@
   animation: float 2.5s ease-in-out infinite;
 }
 
-.rating-box {
-  z-index: 100;
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px;
-  font-size: 20px;
-  width: 300px;
-  height: 300px;
-  background: #ffffff;
-  margin: 18px;
-  border-radius: 10px;
-  border: black 1px solid;
-}
-
 .delete-button {
   position: relative;
   float: right; 
@@ -191,7 +176,7 @@
 
 .professor-list{
   background-color: #ccc;
-  position: fixed;
+  position: relative;
   display: flex;
   flex-direction: column;
   background: white;
@@ -205,7 +190,7 @@
 
 .course-list {
   background-color: #ccc;
-  position: fixed;
+  position: relative;
   display: flex;
   margin-left: 240px;
   flex-direction: column;
@@ -223,5 +208,31 @@
   margin-top: -50px;
   margin-bottom: 60px;
   font-family: "Baloo Bhai";
-  font-size: 18px;
+  font-size: 25px;
+}
+
+.rating-box {
+  bottom: 0px;
+  left: 50%;
+  padding: 10px;
+  font-size: 20px;
+  min-width: 100px;
+  width: 20%;
+  height: 400px;
+  background: #ffffff;
+  margin: 20px;
+  border-radius: 10px;
+  border: black 1px solid;
+  z-index: 50;
+}
+
+.cooked-img {
+  font-size: 30px;
+  font-family: "Baloo Bhai";
+  text-align: center;
+  position: absolute;
+  right: 30%;
+  width: 300px;
+  height: auto;
+
 }
