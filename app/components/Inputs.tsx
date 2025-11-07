@@ -11,10 +11,10 @@ interface InputsProps {
 
 import { useState, useEffect } from 'react';
 import TrashButton from './TrashButton';
-import { getSearchResults, getProfessorDetails, getProfessorRatings } from "../utils/rmpScraper";
+import { getSearchResults, getProfessorDetails, getProfessorDifficultyRatings } from "../utils/rmpScraper";
 import { CourseCode, Rating, Teacher } from '../types/teacher';
 
-export default function Inputs ({id, setClassList, setShowScore, setRatingList, setCanCalculate}: InputsProps) {
+export default function Inputs({ id, setClassList, setShowScore, setRatingList, setCanCalculate }: InputsProps) {
   const [professorQuery, setProfessorQuery] = useState('');
   const [professorInput, setProfessorInput] = useState<Teacher | null>(null);
   const [professorList, setProfessorList] = useState<{ node: Teacher }[]>([]);
@@ -23,7 +23,7 @@ export default function Inputs ({id, setClassList, setShowScore, setRatingList, 
   const [courseQuery, setCourseQuery] = useState('');
   const [courseInput, setCourseInput] = useState<CourseCode | null>(null);
   const [courseList, setCourseList] = useState<CourseCode[]>([]);
-  const [showCourseList, setShowCourseList] = useState<boolean>(false); 
+  const [showCourseList, setShowCourseList] = useState<boolean>(false);
 
   useEffect(() => {
     const delay = setTimeout(async () => {
@@ -52,7 +52,7 @@ export default function Inputs ({id, setClassList, setShowScore, setRatingList, 
 
       try {
         const courseSearchResults = await getProfessorDetails(professorInput.id);
-        const filteredCourseSearchResults = courseSearchResults.courseCodes.filter(course => 
+        const filteredCourseSearchResults = courseSearchResults.courseCodes.filter(course =>
           course.courseName.toLowerCase().includes(courseQuery.toLowerCase())
         );
         setCourseList(filteredCourseSearchResults);
@@ -70,7 +70,7 @@ export default function Inputs ({id, setClassList, setShowScore, setRatingList, 
       try {
         if (professorInput && courseInput) {
           setCanCalculate(true);
-          const difficultyRatings = await getProfessorRatings(professorInput?.id, courseInput?.courseName);
+          const difficultyRatings = await getProfessorDifficultyRatings(professorInput?.id, courseInput?.courseName);
           const filteredRatings = difficultyRatings.filter(r => r != undefined)
             .map(rating => ({ inputId: id, rating }));
           setRatingList(prev => [...prev, ...filteredRatings]);
@@ -83,13 +83,13 @@ export default function Inputs ({id, setClassList, setShowScore, setRatingList, 
     return () => clearTimeout(fetchRating);
   }, [professorInput, courseInput, setCanCalculate, setRatingList, id])
 
-  function selectProfessor (professor: Teacher) {
+  function selectProfessor(professor: Teacher) {
     setProfessorInput(professor)
     setProfessorQuery(professor.lastName)
     setShowProfessorList(false)
   }
 
-  function selectCourse (course: CourseCode) {
+  function selectCourse(course: CourseCode) {
     setCourseInput(course)
     setCourseQuery(course.courseName)
     setShowCourseList(false)
@@ -99,17 +99,17 @@ export default function Inputs ({id, setClassList, setShowScore, setRatingList, 
     <div className="class-box">
 
       <input
-        placeholder = "Professor"
+        placeholder="Professor"
         value={professorQuery}
         required
-        onChange = {(e) => {
+        onChange={(e) => {
           setProfessorQuery(e.target.value);
           setShowProfessorList(e.target.value.length > 0);
           setShowScore(false);
         }}
       />
-       
-      {showProfessorList && professorList != null &&(
+
+      {showProfessorList && professorList != null && (
         <div className="professor-list">
           {professorList.map((professor, index) => (
             <button
@@ -124,28 +124,28 @@ export default function Inputs ({id, setClassList, setShowScore, setRatingList, 
 
 
       <input
-        placeholder = "Class"
+        placeholder="Class"
         value={courseQuery}
         required
-        onChange = {(e) => {
+        onChange={(e) => {
           setCourseQuery(e.target.value);
           setShowCourseList(e.target.value.length > 0);
           setShowScore(false);
-        }}/>
+        }} />
 
-      {showCourseList && courseList != null &&(
-          <div className="course-list">
-            {courseList.map((course, index) => (
-              <button
-                key={index} 
-                onClick = {() => selectCourse(course)}
-              > 
-                {course.courseName}
-              </button>
-           ))}
-          </div>
-          )}
-      <TrashButton id = {id} setClassList = {setClassList} setRatingList = {setRatingList}/>
+      {showCourseList && courseList != null && (
+        <div className="course-list">
+          {courseList.map((course, index) => (
+            <button
+              key={index}
+              onClick={() => selectCourse(course)}
+            >
+              {course.courseName}
+            </button>
+          ))}
+        </div>
+      )}
+      <TrashButton id={id} setClassList={setClassList} setRatingList={setRatingList} />
     </div>
   )
 }
