@@ -12,7 +12,7 @@ interface InputsProps {
 import { useState, useEffect } from 'react';
 import TrashButton from './TrashButton';
 import { getSearchResults, getProfessorDetails, getProfessorDifficultyRatings } from "../utils/rmpScraper";
-import { CourseCode, Rating, Teacher } from '../types/teacher';
+import { CourseCode, Teacher } from '../types/teacher';
 
 export default function Inputs({ id, setClassList, setShowScore, setRatingList, setCanCalculate }: InputsProps) {
   const [professorQuery, setProfessorQuery] = useState('');
@@ -98,7 +98,7 @@ export default function Inputs({ id, setClassList, setShowScore, setRatingList, 
   return (
     <div className="class-box">
 
-      <input 
+      <input
         placeholder="Professor"
         value={professorQuery}
         required
@@ -120,7 +120,7 @@ export default function Inputs({ id, setClassList, setShowScore, setRatingList, 
           setShowScore(false);
         }} />
 
-        <TrashButton id={id} setClassList={setClassList} setRatingList={setRatingList} />
+      <TrashButton id={id} setClassList={setClassList} setRatingList={setRatingList} />
 
       {showProfessorList && professorList != null && (
         <div className="professor-list">

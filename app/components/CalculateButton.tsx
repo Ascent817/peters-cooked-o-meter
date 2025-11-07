@@ -10,12 +10,13 @@ import { useState } from "react";
 import "./Main.css"
 import Score from "./Score";
 
-export default function CalculateButton ({showScore, ratingList, setShowScore, canCalculate}: CalculateButtonProps) {
+export default function CalculateButton({ showScore, ratingList, setShowScore, canCalculate }: CalculateButtonProps) {
   const [average, setAverage] = useState(0);
 
   function calculateRatings() {
-    setShowScore(true);
+    console.log(canCalculate)
     if (!canCalculate) return;
+    setShowScore(true);
 
     const sum = ratingList.reduce((acc, item) => acc + item.rating, 0) * (ratingList.length * 0.07) - (6 - ratingList.length);
     console.log(ratingList)
@@ -24,15 +25,15 @@ export default function CalculateButton ({showScore, ratingList, setShowScore, c
 
   return (
     <div>
-      <button 
-        type="button" 
+      <button
+        type="button"
         className="calc-button"
-        onClick = {() => calculateRatings()}
+        onClick={() => calculateRatings()}
       >
         Calculate
       </button>
 
-      <Score showScore = {showScore} average = {average} />
+      <Score showScore={showScore} average={average} />
     </div>
   )
 }
