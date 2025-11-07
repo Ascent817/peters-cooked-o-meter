@@ -140,7 +140,7 @@
   position: absolute;
   width: 300px;
   height: auto;
-  bottom: 30px;
+  bottom: 25%;
   right: 5%;
 }
 
@@ -161,21 +161,6 @@
   display: block;
   object-fit: cover;
   animation: float 2.5s ease-in-out infinite;
-}
-
-.rating-box {
-  z-index: 100;
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px;
-  font-size: 20px;
-  width: 300px;
-  height: 300px;
-  background: #ffffff;
-  margin: 18px;
-  border-radius: 10px;
-  border: black 1px solid;
 }
 
 .delete-button {
@@ -224,4 +209,30 @@
   margin-bottom: 60px;
   font-family: "Baloo Bhai";
   font-size: 18px;
+}
+
+.rating-box {
+  bottom: 0px;
+  left: 50%;
+  padding: 10px;
+  font-size: 20px;
+  min-width: 100px;
+  width: 20%;
+  height: 400px;
+  background: #ffffff;
+  margin: 20px;
+  border-radius: 10px;
+  border: black 1px solid;
+  z-index: 50;
+}
+
+.cooked-img {
+  font-size: 30px;
+  font-family: "Baloo Bhai";
+  text-align: center;
+  position: absolute;
+  right: 30%;
+  width: 300px;
+  height: auto;
+
 }

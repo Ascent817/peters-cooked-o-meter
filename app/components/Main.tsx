@@ -14,9 +14,6 @@ export default function Main() {
       <div className="button-row">
         <AddButton />
       </div>
-      <div className="meter-box">
-        <img src="/Peter.svg" alt="Peter"></img>
-      </div>
     </div>
   );
 }
