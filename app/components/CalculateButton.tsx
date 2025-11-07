@@ -17,7 +17,7 @@ export default function CalculateButton ({showScore, ratingList, setShowScore, c
     setShowScore(true);
     if (!canCalculate) return;
 
-    const sum = ratingList.reduce((acc, item) => acc + item.rating, 0) * (ratingList.length * 0.1) - (6 - ratingList.length);
+    const sum = ratingList.reduce((acc, item) => acc + item.rating, 0) * (ratingList.length * 0.07) - (6 - ratingList.length);
     console.log(ratingList)
     setAverage(Math.round(sum / ratingList.length));
   }
